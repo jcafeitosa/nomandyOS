@@ -1,6 +1,7 @@
 import { describe, expect, it } from "bun:test";
 import { HttpError } from "../errors.js";
 import type { HttpActor } from "../http/actor-context.js";
+import { normalizeAgentApiKeyScope } from "@paperclipai/shared";
 import {
   authenticateAgentBearer,
   type AgentAuthDependencies,
@@ -33,10 +34,7 @@ function makeDependencies(
     auditMissingResponsibleUser: async () => {},
     verifyJwt: () => baseClaims,
     invalidTokenMessage: () => "Agent token did not verify; obtain fresh credentials and retry",
-    normalizeScope: (scope) =>
-      scope && typeof scope === "object" && "kind" in scope
-        ? scope
-        : { kind: "standard" as const },
+    normalizeScope: (scope) => normalizeAgentApiKeyScope(scope),
     ...overrides,
   };
 }
