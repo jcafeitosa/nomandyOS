@@ -69,7 +69,7 @@ describe("Paperclip Cloud self-host enrollment", () => {
         PAPERCLIP_CLOUD_CONNECTOR_BASE_URL: "https://my.example.test",
         PAPERCLIP_CLOUD_CONNECTOR_ENVIRONMENT: "development",
       },
-      request: request as typeof fetch,
+      request: request as unknown as typeof fetch,
     });
     expect(pending.status).toBe("pending");
     expect(pending.verificationUrl).toBe("https://my.example.test/connections/enroll?id=enroll-test");
@@ -81,7 +81,7 @@ describe("Paperclip Cloud self-host enrollment", () => {
       enrollmentId: "enroll-test",
       approvalCode: "approval-code",
       state: "wrong-state",
-      request: request as typeof fetch,
+      request: request as unknown as typeof fetch,
     })).rejects.toThrow(/Invalid or expired/);
 
     const state = loadPaperclipCloudConnectorIdentity()?.pending?.returnState;
@@ -89,7 +89,7 @@ describe("Paperclip Cloud self-host enrollment", () => {
       enrollmentId: "enroll-test",
       approvalCode: "approval-code",
       state: state!,
-      request: request as typeof fetch,
+      request: request as unknown as typeof fetch,
     });
     expect(active).toMatchObject({ configured: true, status: "active", origins: ["https://private.example.test"] });
     const config = paperclipCloudConnectorConfigFromEnv({});
@@ -100,7 +100,7 @@ describe("Paperclip Cloud self-host enrollment", () => {
       expect(String(input)).toBe("https://my.example.test/v1/connector/instance-status");
       return Response.json({ active: false, status: "suspended" });
     });
-    await expect(reconcilePaperclipCloudConnectorEnrollmentStatus({}, statusRequest as typeof fetch)).resolves.toMatchObject({
+    await expect(reconcilePaperclipCloudConnectorEnrollmentStatus({}, statusRequest as unknown as typeof fetch)).resolves.toMatchObject({
       configured: false,
       status: "suspended",
       instanceId: active.instanceId,
@@ -110,7 +110,7 @@ describe("Paperclip Cloud self-host enrollment", () => {
   it("rejects non-loopback plain HTTP destinations before creating keys", async () => {
     await expect(startPaperclipCloudConnectorEnrollment({
       origin: "http://private.example.test",
-      request: vi.fn() as typeof fetch,
+      request: vi.fn() as unknown as typeof fetch,
     })).rejects.toThrow(/requires HTTPS/);
     expect(paperclipCloudConnectorEnrollmentStatus().status).toBe("not_configured");
   });
@@ -132,7 +132,7 @@ describe("Paperclip Cloud self-host enrollment", () => {
         enrollmentId: "enroll-test",
         verificationUrl,
         expiresAt: new Date(Date.now() + 60_000).toISOString(),
-      }, { status: 201 })) as typeof fetch,
+      }, { status: 201 })) as unknown as typeof fetch,
     })).rejects.toThrow(/invalid enrollment destination/);
   });
 
@@ -157,7 +157,7 @@ describe("Paperclip Cloud self-host enrollment", () => {
         PAPERCLIP_CLOUD_CONNECTOR_BASE_URL: "https://my.example.test",
         PAPERCLIP_CLOUD_CONNECTOR_ENVIRONMENT: "development",
       },
-      request: request as typeof fetch,
+      request: request as unknown as typeof fetch,
     };
 
     const first = startPaperclipCloudConnectorEnrollment(values);
@@ -205,7 +205,7 @@ describe("Paperclip Cloud self-host enrollment", () => {
     await startPaperclipCloudConnectorEnrollment({
       origin,
       env: { PAPERCLIP_CLOUD_CONNECTOR_BASE_URL: "https://my.paperclip.app" },
-      request: productionRequest as typeof fetch,
+      request: productionRequest as unknown as typeof fetch,
     });
     const productionIdentity = loadPaperclipCloudConnectorIdentity()!;
 
@@ -232,7 +232,7 @@ describe("Paperclip Cloud self-host enrollment", () => {
     const stagingStatus = await startPaperclipCloudConnectorEnrollment({
       origin,
       env: { PAPERCLIP_CLOUD_CONNECTOR_BASE_URL: "https://my-staging.paperclip.app" },
-      request: stagingRequest as typeof fetch,
+      request: stagingRequest as unknown as typeof fetch,
     });
     const stagingIdentity = loadPaperclipCloudConnectorIdentity()!;
 
@@ -268,7 +268,7 @@ describe("Paperclip Cloud self-host enrollment", () => {
         origins: [origin],
       });
     });
-    await startPaperclipCloudConnectorEnrollment({ origin, env: productionEnv, request: request as typeof fetch });
+    await startPaperclipCloudConnectorEnrollment({ origin, env: productionEnv, request: request as unknown as typeof fetch });
     const pending = loadPaperclipCloudConnectorIdentity()!;
     const changedTargetRequest = vi.fn();
 
@@ -280,7 +280,7 @@ describe("Paperclip Cloud self-host enrollment", () => {
         PAPERCLIP_CLOUD_CONNECTOR_BASE_URL: "https://my-staging.paperclip.app",
         PAPERCLIP_CLOUD_CONNECTOR_ENVIRONMENT: "staging",
       },
-      request: changedTargetRequest as typeof fetch,
+      request: changedTargetRequest as unknown as typeof fetch,
     })).rejects.toThrow(/Invalid or expired/);
     expect(changedTargetRequest).not.toHaveBeenCalled();
 
@@ -289,7 +289,7 @@ describe("Paperclip Cloud self-host enrollment", () => {
       approvalCode: "approval-code",
       state: pending.pending!.returnState,
       env: productionEnv,
-      request: request as typeof fetch,
+      request: request as unknown as typeof fetch,
     });
     const activeIdentity = loadPaperclipCloudConnectorIdentity()!;
     const activeSwitchRequest = vi.fn();
@@ -301,7 +301,7 @@ describe("Paperclip Cloud self-host enrollment", () => {
     await expect(startPaperclipCloudConnectorEnrollment({
       origin,
       env: stagingEnv,
-      request: activeSwitchRequest as typeof fetch,
+      request: activeSwitchRequest as unknown as typeof fetch,
     })).rejects.toThrow(/another target/);
     expect(activeSwitchRequest).not.toHaveBeenCalled();
     expect(loadPaperclipCloudConnectorIdentity()).toEqual(activeIdentity);
@@ -328,14 +328,14 @@ describe("Paperclip Cloud self-host enrollment", () => {
         origins: [origin],
       });
     });
-    await startPaperclipCloudConnectorEnrollment({ origin, env: productionEnv, request: request as typeof fetch });
+    await startPaperclipCloudConnectorEnrollment({ origin, env: productionEnv, request: request as unknown as typeof fetch });
     const pending = loadPaperclipCloudConnectorIdentity()!;
     await completePaperclipCloudConnectorEnrollment({
       enrollmentId: "enroll-production",
       approvalCode: "approval-code",
       state: pending.pending!.returnState,
       env: productionEnv,
-      request: request as typeof fetch,
+      request: request as unknown as typeof fetch,
     });
     const localIdentity = loadPaperclipCloudConnectorIdentity()!;
 
@@ -432,7 +432,7 @@ describe("Paperclip Cloud self-host enrollment", () => {
     await startPaperclipCloudConnectorEnrollment({
       origin,
       env: localEnv,
-      request: enrollmentRequest as typeof fetch,
+      request: enrollmentRequest as unknown as typeof fetch,
     });
     const pendingIdentity = loadPaperclipCloudConnectorIdentity()!;
     const managedEnv = {
@@ -446,14 +446,14 @@ describe("Paperclip Cloud self-host enrollment", () => {
     await expect(startPaperclipCloudConnectorEnrollment({
       origin,
       env: managedEnv,
-      request: managedRequest as typeof fetch,
+      request: managedRequest as unknown as typeof fetch,
     })).rejects.toThrow(/unavailable with managed identity/);
     await expect(completePaperclipCloudConnectorEnrollment({
       enrollmentId: "enroll-local",
       approvalCode: "approval-code",
       state: pendingIdentity.pending!.returnState,
       env: managedEnv,
-      request: managedRequest as typeof fetch,
+      request: managedRequest as unknown as typeof fetch,
     })).rejects.toThrow(/Invalid or expired/);
     expect(managedRequest).not.toHaveBeenCalled();
     expect(loadPaperclipCloudConnectorIdentity()).toEqual(pendingIdentity);

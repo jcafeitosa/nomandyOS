@@ -110,10 +110,13 @@ describe("HTTP application boundary", () => {
       deploymentExposure: "private",
       authReady: true,
       resolveActor: () => actor,
-    }).get("/api/actor", ({ actor: currentActor }) => ({
-      type: currentActor.type,
-      source: currentActor.source,
-    }));
+    }).get("/api/actor", (ctx) => {
+      const currentActor = (ctx as unknown as { actor: HttpActor }).actor;
+      return {
+        type: currentActor.type,
+        source: currentActor.source,
+      };
+    });
 
     const response = await app.handle(
       new Request("http://localhost/api/actor", { method: "GET" }),
@@ -132,7 +135,7 @@ describe("HTTP application boundary", () => {
       deploymentExposure: "private",
       authReady: true,
       resolveActor: () => null,
-    }).get("/api/actor", ({ actor: currentActor }) => currentActor);
+    }).get("/api/actor", (ctx) => (ctx as unknown as { actor: HttpActor }).actor);
 
     const response = await app.handle(
       new Request("http://localhost/api/actor", { method: "GET" }),

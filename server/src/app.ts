@@ -18,7 +18,7 @@ import {
   sweepAbandonedImportTransferSpools,
 } from "./services/company-import-transfers.js";
 import { companyTransferRunService } from "./services/company-transfer-runs.js";
-import { healthRoutes } from "./routes/health.js";
+import { healthRoutes, readyHandler } from "./routes/health.js";
 import { cloudRuntimeIdentityMiddleware } from "./middleware/cloud-runtime-identity.js";
 import { cloudRoutes } from "./routes/cloud.js";
 import { companyRoutes } from "./routes/companies.js";
@@ -426,6 +426,7 @@ export async function createApp(
       databaseBackupHealth: opts.databaseBackupHealth,
     }),
   );
+  api.get("/ready", readyHandler({ authReady: opts.authReady }));
   api.use(openApiRoutes());
   api.use("/cloud", cloudRoutes());
   api.use("/companies", companyRoutes(db, opts.storageService));
@@ -792,7 +793,9 @@ export async function createApp(
         // current MagicDNS hostname through the broker's HTTPS listener.
         host: opts.bindHost,
         middlewareMode: true,
-        hmr: {
+        // Vite 8: HMR connection options moved from server.hmr → server.ws
+        // (server.hmr.server/host/protocol/port/clientPort are deprecated).
+        ws: {
           server: hmrServer,
           ...(hmrHost ? { host: hmrHost } : {}),
           ...(hmrProtocol ? { protocol: hmrProtocol } : {}),
