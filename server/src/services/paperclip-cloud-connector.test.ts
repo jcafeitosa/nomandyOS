@@ -77,7 +77,7 @@ describe("Paperclip Cloud connector", () => {
         expiresAt: "2026-08-21T20:00:00.000Z",
       }, { status: 201 });
     });
-    const connector = createPaperclipCloudConnector({ config: keys.config, request: request as typeof fetch });
+    const connector = createPaperclipCloudConnector({ config: keys.config, request: request as unknown as typeof fetch });
 
     await expect(connector.startAuthorization({
       subject,
@@ -101,7 +101,7 @@ describe("Paperclip Cloud connector", () => {
         confirmationUrl: "https://my.example.test/connections/confirm?session=broker-state",
         authorizationUrl: "https://github.com/login/oauth/authorize?client_id=client&state=broker-state",
         expiresAt: "2099-08-21T20:00:00.000Z",
-      })) as typeof fetch,
+      })) as unknown as typeof fetch,
     });
 
     await expect(connector.startAuthorization({
@@ -123,7 +123,7 @@ describe("Paperclip Cloud connector", () => {
         confirmationUrl: "https://my.example.test/connections/confirm?session=broker-state",
         authorizationUrl: "https://accounts.google.com/o/oauth2/v2/auth?client_id=client&state=broker-state",
         expiresAt: "2099-08-21T20:00:00.000Z",
-      })) as typeof fetch,
+      })) as unknown as typeof fetch,
     });
 
     await expect(connector.startAuthorization({
@@ -153,7 +153,7 @@ describe("Paperclip Cloud connector", () => {
         confirmationUrl: "https://my.example.test/connections/confirm?session=broker-state",
         authorizationUrl,
         expiresAt: "2099-08-21T20:00:00.000Z",
-      })) as typeof fetch,
+      })) as unknown as typeof fetch,
     });
 
     await expect(connector.startAuthorization({
@@ -182,7 +182,7 @@ describe("Paperclip Cloud connector", () => {
       expect(claims.sh).toBe(createHash("sha256").update(body.binding).digest("base64url"));
       return Response.json({ active: true, installationId: "42" });
     });
-    const connector = createPaperclipCloudConnector({ config: keys.config, request: request as typeof fetch });
+    const connector = createPaperclipCloudConnector({ config: keys.config, request: request as unknown as typeof fetch });
 
     await expect(connector.setWebhookBinding({
       subject,
@@ -213,7 +213,7 @@ describe("Paperclip Cloud connector", () => {
       request: vi.fn(async () => Response.json({
         confirmationUrl: "https://my.example.test/connections/confirm?session=broker-state",
         expiresAt: "2099-08-21T20:00:00.000Z",
-      })) as typeof fetch,
+      })) as unknown as typeof fetch,
     });
     await expect(legacy.startAuthorization({
       subject,
@@ -228,7 +228,7 @@ describe("Paperclip Cloud connector", () => {
         confirmationUrl: "https://my.example.test/connections/confirm?session=broker-state",
         handoff: { kind: "tenant_background", session: "not valid" },
         expiresAt: "2099-08-21T20:00:00.000Z",
-      })) as typeof fetch,
+      })) as unknown as typeof fetch,
     });
     await expect(malformed.startAuthorization({
       subject,
@@ -261,7 +261,7 @@ describe("Paperclip Cloud connector", () => {
       scopes: [...GMAIL_CONNECTOR_SCOPES],
       sealed,
     }));
-    const connector = createPaperclipCloudConnector({ config: keys.config, request: request as typeof fetch });
+    const connector = createPaperclipCloudConnector({ config: keys.config, request: request as unknown as typeof fetch });
 
     await expect(connector.claim({
       subject,
@@ -298,7 +298,7 @@ describe("Paperclip Cloud connector", () => {
       expect(claims.rid).toBe("local-oauth-state-drive");
       return Response.json({ claimId: "clm_drive", scopes: credentials.scopes, sealed });
     });
-    const connector = createPaperclipCloudConnector({ config: keys.config, request: request as typeof fetch });
+    const connector = createPaperclipCloudConnector({ config: keys.config, request: request as unknown as typeof fetch });
 
     await expect(connector.claim({
       subject,
@@ -332,7 +332,7 @@ describe("Paperclip Cloud connector", () => {
         profiles: ["gmail.read", "drive.write", "unknown.profile", "gmail.read"],
       });
     });
-    const connector = createPaperclipCloudConnector({ config: keys.config, request: request as typeof fetch });
+    const connector = createPaperclipCloudConnector({ config: keys.config, request: request as unknown as typeof fetch });
     await expect(connector.getCapabilities()).resolves.toEqual(["gmail.read", "drive.write"]);
   });
 
@@ -347,7 +347,7 @@ describe("Paperclip Cloud connector", () => {
     for (const response of responses) {
       const connector = createPaperclipCloudConnector({
         config: keys.config,
-        request: vi.fn(async () => response) as typeof fetch,
+        request: vi.fn(async () => response) as unknown as typeof fetch,
       });
       await expect(connector.getCapabilities()).resolves.toEqual([]);
     }
@@ -372,7 +372,7 @@ describe("Paperclip Cloud connector", () => {
       expect(claims).not.toHaveProperty("scp");
       return Response.json({ active: true, status: "active" });
     });
-    const connector = createPaperclipCloudConnector({ config: keys.config, request: request as typeof fetch });
+    const connector = createPaperclipCloudConnector({ config: keys.config, request: request as unknown as typeof fetch });
 
     await expect(connector.getInstanceStatus()).resolves.toBe("active");
   });
@@ -381,7 +381,7 @@ describe("Paperclip Cloud connector", () => {
     const keys = config();
     const connector = createPaperclipCloudConnector({
       config: keys.config,
-      request: vi.fn(async () => new Response("unknown instance detail", { status: 401 })) as typeof fetch,
+      request: vi.fn(async () => new Response("unknown instance detail", { status: 401 })) as unknown as typeof fetch,
     });
 
     await expect(connector.getInstanceStatus()).resolves.toBe("removed");
@@ -392,7 +392,7 @@ describe("Paperclip Cloud connector", () => {
     const request = vi.fn(async () => new Response(JSON.stringify({
       error: "provider rejected access-secret refresh-secret",
     }), { status: 502 }));
-    const connector = createPaperclipCloudConnector({ config: keys.config, request: request as typeof fetch });
+    const connector = createPaperclipCloudConnector({ config: keys.config, request: request as unknown as typeof fetch });
 
     const error = await connector.refresh({ subject, companyId, refreshToken: "refresh-secret" }).catch((caught) => caught);
     expect(error).toBeInstanceOf(PaperclipCloudConnectorError);
