@@ -33,7 +33,10 @@ function makeDependencies(
     auditMissingResponsibleUser: async () => {},
     verifyJwt: () => baseClaims,
     invalidTokenMessage: () => "Agent token did not verify; obtain fresh credentials and retry",
-    normalizeScope: (scope) => scope ?? { kind: "standard" },
+    normalizeScope: (scope) =>
+      scope && typeof scope === "object" && "kind" in scope
+        ? scope
+        : { kind: "standard" as const },
     ...overrides,
   };
 }

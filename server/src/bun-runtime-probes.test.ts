@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { finalizeServerShutdown } from "./shutdown.ts";
+import { finalizeServerShutdown } from "./shutdown.js";
 
 const sleepCommand = process.platform === "win32" ? ["cmd", "/c", "ping", "-n", "6", "127.0.0.1"] : ["sleep", "5"];
 
@@ -17,7 +17,7 @@ describe("Bun runtime compatibility probes", () => {
       stderr: "pipe",
     });
 
-    expect(await processHandle.stdout.text()).toBe("bun-runtime-probe");
+    expect(await new Response(processHandle.stdout).text()).toBe("bun-runtime-probe");
     expect(await processHandle.exited).toBe(0);
   });
 
@@ -58,10 +58,16 @@ describe("Bun runtime compatibility probes", () => {
 
     await finalizeServerShutdown({
       signal: "SIGTERM",
-      shutdownAppServices: async () => order.push("app"),
+      shutdownAppServices: async () => {
+        order.push("app");
+      },
       stopEmbeddedPostgres: null,
-      shutdownInstrumentation: async () => order.push("otel"),
-      shutdownSentry: async () => order.push("sentry"),
+      shutdownInstrumentation: async () => {
+        order.push("otel");
+      },
+      shutdownSentry: async () => {
+        order.push("sentry");
+      },
       log: logger,
     });
 
