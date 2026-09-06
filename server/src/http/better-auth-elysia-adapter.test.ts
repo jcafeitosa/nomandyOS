@@ -3,6 +3,8 @@ import { afterAll, beforeAll, describe, expect, it } from "bun:test";
 import type { Config } from "../config.js";
 import { createBetterAuthInstance } from "../auth/better-auth.js";
 import type { HttpActor } from "./actor-context.js";
+import { Elysia } from "elysia";
+import { withActorContext } from "./context.js";
 import { createBetterAuthElysiaApp } from "./better-auth-elysia-adapter.js";
 import {
   getEmbeddedPostgresTestSupport,
@@ -86,13 +88,19 @@ describeRealDatabase("Better Auth Elysia adapter contract", () => {
   });
 
   it("fails closed for protected routes without an actor", async () => {
+    // Probe must sit inside withActorContext scope; a bare .get on the outer
+    // adapter app bypasses the protected shell (Elysia scoped resolve).
     const protectedApp = createBetterAuthElysiaApp({
       deploymentMode: "authenticated",
       deploymentExposure: "private",
       authReady: true,
       resolveActor: () => null,
       auth,
-    }).get("/api/protected-test", () => "protected");
+    }).use(
+      new Elysia({ name: "paperclip-protected-probe" })
+        .use(withActorContext(() => null))
+        .get("/api/protected-test", () => "protected"),
+    );
 
     const response = await protectedApp.handle(
       new Request("http://localhost/api/protected-test", { method: "GET" }),
