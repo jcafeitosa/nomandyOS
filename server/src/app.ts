@@ -793,7 +793,9 @@ export async function createApp(
         // current MagicDNS hostname through the broker's HTTPS listener.
         host: opts.bindHost,
         middlewareMode: true,
-        hmr: {
+        // Vite 8: HMR connection options moved from server.hmr → server.ws
+        // (server.hmr.server/host/protocol/port/clientPort are deprecated).
+        ws: {
           server: hmrServer,
           ...(hmrHost ? { host: hmrHost } : {}),
           ...(hmrProtocol ? { protocol: hmrProtocol } : {}),
