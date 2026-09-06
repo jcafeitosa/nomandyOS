@@ -391,7 +391,7 @@ jobs:
           version: 9.15.4
 
       - name: Setup Node.js
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe502c0 # v7
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
         with:
           node-version: 24
           cache: pnpm
@@ -598,7 +598,7 @@ jobs:
     # Preserve the legacy required-check name while the underlying work runs in parallel.
     name: verify
     if: ${{ always() }}
-    needs: [gate, policy, typecheck_release_registry, general_tests, build, docker_context_integrity]
+    needs: [gate, policy, typecheck_release_registry, general_tests, build, docker_context_integrity, http_boundary]
     runs-on: ${{ needs.gate.outputs.runner }}
     timeout-minutes: 5
 
@@ -611,6 +611,7 @@ jobs:
           GENERAL_TESTS_RESULT: ${{ needs.general_tests.result }}
           BUILD_RESULT: ${{ needs.build.result }}
           DOCKER_CONTEXT_INTEGRITY_RESULT: ${{ needs.docker_context_integrity.result }}
+          HTTP_BOUNDARY_RESULT: ${{ needs.http_boundary.result }}
         run: |
           test "$POLICY_RESULT" = "success"
           case "$FULL_CI" in
@@ -619,12 +620,14 @@ jobs:
               test "$GENERAL_TESTS_RESULT" = "success"
               test "$BUILD_RESULT" = "success"
               test "$DOCKER_CONTEXT_INTEGRITY_RESULT" = "success"
+              test "$HTTP_BOUNDARY_RESULT" = "success"
               ;;
             false)
               test "$TYPECHECK_RELEASE_REGISTRY_RESULT" = "skipped"
               test "$GENERAL_TESTS_RESULT" = "skipped"
               test "$BUILD_RESULT" = "skipped"
               test "$DOCKER_CONTEXT_INTEGRITY_RESULT" = "skipped"
+              test "$HTTP_BOUNDARY_RESULT" = "skipped"
               ;;
             *)
               echo "Invalid full_ci decision: $FULL_CI" >&2
