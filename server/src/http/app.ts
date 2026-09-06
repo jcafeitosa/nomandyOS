@@ -13,6 +13,7 @@ import { createFoldersPlugin, type FoldersPluginOptions } from "./folders-plugin
 import { createAgentsPlugin, type AgentsPluginOptions } from "./agents-plugin.js";
 import { createAccessPlugin, type AccessPluginOptions } from "./access-plugin.js";
 import { createIssuesPlugin, type IssuesPluginOptions } from "./issues-plugin.js";
+import { createAdaptersPlugin, type AdaptersPluginOptions } from "./adapters-plugin.js";
 
 export type HttpAppOptions = {
   deploymentMode: "local_trusted" | "authenticated";
@@ -37,6 +38,7 @@ export type ProtectedHttpAppOptions = HttpAppOptions & {
   agents?: Omit<AgentsPluginOptions, "resolveActor">;
   access?: Omit<AccessPluginOptions, "resolveActor">;
   issues?: Omit<IssuesPluginOptions, "resolveActor">;
+  adapters?: Omit<AdaptersPluginOptions, "resolveActor">;
 };
 
 function publicRoutes(options: HttpAppOptions) {
@@ -156,6 +158,12 @@ export function createProtectedHttpApp(options: ProtectedHttpAppOptions) {
       ? createIssuesPlugin({
           resolveActor: options.resolveActor,
           ...options.issues,
+        })
+      : undefined,
+    options.adapters
+      ? createAdaptersPlugin({
+          resolveActor: options.resolveActor,
+          ...options.adapters,
         })
       : undefined,
   ].filter((plugin): plugin is NonNullable<typeof plugin> => plugin !== undefined);
