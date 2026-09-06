@@ -1,5 +1,5 @@
 import { randomUUID, timingSafeEqual } from "node:crypto";
-import { Router } from "express";
+import { Router, type Request, type Response } from "express";
 import type { Db } from "@paperclipai/db";
 import { and, count, eq, gt, inArray, isNull, sql } from "drizzle-orm";
 import { heartbeatRuns, instanceUserRoles, invites } from "@paperclipai/db";
@@ -113,6 +113,17 @@ function getCloudHealthStatus(env: CloudInstanceEnv) {
         stackSlug: runtimeIdentity.stackSlug,
       },
     } : {}),
+  };
+}
+
+export function readyHandler(opts: { authReady: boolean }) {
+  return (_req: Request, res: Response) => {
+    res.setHeader("cache-control", "no-store");
+    if (!opts.authReady) {
+      res.status(503).json({ status: "not_ready", reason: "authentication_not_ready" });
+      return;
+    }
+    res.status(200).json({ status: "ready" });
   };
 }
 
