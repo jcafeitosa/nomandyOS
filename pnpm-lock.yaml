@@ -110,7 +110,7 @@ importers:
         version: 17.4.2
       drizzle-orm:
         specifier: 0.45.2
-        version: 0.45.2(@opentelemetry/api@1.9.1)(kysely@0.29.5)(pg@8.18.0)(postgres@3.4.9)
+        version: 0.45.2(@opentelemetry/api@1.9.1)(bun-types@1.4.1)(kysely@0.29.5)(pg@8.18.0)(postgres@3.4.9)
       embedded-postgres:
         specifier: ^18.1.0-beta.16
         version: 18.1.0-beta.16(patch_hash=55uhvnotpqyiy37rn3pqpukhei)
@@ -376,7 +376,7 @@ importers:
         version: link:../shared
       drizzle-orm:
         specifier: ^0.45.2
-        version: 0.45.2(@opentelemetry/api@1.9.1)(kysely@0.29.5)(pg@8.18.0)(postgres@3.4.9)
+        version: 0.45.2(@opentelemetry/api@1.9.1)(bun-types@1.4.1)(kysely@0.29.5)(pg@8.18.0)(postgres@3.4.9)
       embedded-postgres:
         specifier: ^18.1.0-beta.16
         version: 18.1.0-beta.16(patch_hash=55uhvnotpqyiy37rn3pqpukhei)
@@ -490,8 +490,8 @@ importers:
         specifier: ^3.1.1
         version: 3.1.1
       opencode-ai:
-        specifier: 1.18.17
-        version: 1.18.17
+        specifier: 1.18.27
+        version: 1.18.27
       react-markdown:
         specifier: ^10.1.0
         version: 10.1.0(@types/react@19.2.18)(react@19.2.8)
@@ -895,7 +895,7 @@ importers:
         version: link:../packages/skills-catalog
       '@vercel/connect':
         specifier: 0.6.1
-        version: 0.6.1(better-auth@1.7.2(@opentelemetry/api@1.9.1)(drizzle-kit@0.31.10)(drizzle-orm@0.45.2(@opentelemetry/api@1.9.1)(kysely@0.29.5)(pg@8.18.0)(postgres@3.4.9))(pg@8.18.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(vitest@4.1.11(@opentelemetry/api@1.9.1)(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.7.0)(jsdom@30.0.1(@noble/hashes@2.4.0))(tsx@4.23.12)))
+        version: 0.6.1(better-auth@1.7.2(@opentelemetry/api@1.9.1)(drizzle-kit@0.31.10)(drizzle-orm@0.45.2(@opentelemetry/api@1.9.1)(bun-types@1.4.1)(kysely@0.29.5)(pg@8.18.0)(postgres@3.4.9))(pg@8.18.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(vitest@4.1.11(@opentelemetry/api@1.9.1)(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.7.0)(jsdom@30.0.1(@noble/hashes@2.4.0))(tsx@4.23.12)))
       acpx:
         specifier: 0.13.1
         version: 0.13.1(patch_hash=lzpwjtiaybzoijy455dfycwavu)
@@ -907,7 +907,7 @@ importers:
         version: 3.0.1(ajv@8.20.0)
       better-auth:
         specifier: 1.7.2
-        version: 1.7.2(@opentelemetry/api@1.9.1)(drizzle-kit@0.31.10)(drizzle-orm@0.45.2(@opentelemetry/api@1.9.1)(kysely@0.29.5)(pg@8.18.0)(postgres@3.4.9))(pg@8.18.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(vitest@4.1.11(@opentelemetry/api@1.9.1)(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.7.0)(jsdom@30.0.1(@noble/hashes@2.4.0))(tsx@4.23.12))
+        version: 1.7.2(@opentelemetry/api@1.9.1)(drizzle-kit@0.31.10)(drizzle-orm@0.45.2(@opentelemetry/api@1.9.1)(bun-types@1.4.1)(kysely@0.29.5)(pg@8.18.0)(postgres@3.4.9))(pg@8.18.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(vitest@4.1.11(@opentelemetry/api@1.9.1)(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.7.0)(jsdom@30.0.1(@noble/hashes@2.4.0))(tsx@4.23.12))
       chokidar:
         specifier: ^5.0.0
         version: 5.0.0
@@ -922,7 +922,10 @@ importers:
         version: 17.4.2
       drizzle-orm:
         specifier: ^0.45.2
-        version: 0.45.2(@opentelemetry/api@1.9.1)(kysely@0.29.5)(pg@8.18.0)(postgres@3.4.9)
+        version: 0.45.2(@opentelemetry/api@1.9.1)(bun-types@1.4.1)(kysely@0.29.5)(pg@8.18.0)(postgres@3.4.9)
+      elysia:
+        specifier: 1.4.30
+        version: 1.4.30(@types/bun@1.4.1)(typescript@7.0.2)
       embedded-postgres:
         specifier: ^18.1.0-beta.16
         version: 18.1.0-beta.16(patch_hash=55uhvnotpqyiy37rn3pqpukhei)
@@ -963,6 +966,9 @@ importers:
       '@paperclipai/paperclip-runner':
         specifier: workspace:*
         version: link:../packages/paperclip-runner
+      '@types/bun':
+        specifier: ^1.3.5
+        version: 1.4.1
       '@types/express':
         specifier: ^5.0.0
         version: 5.0.6
@@ -4705,6 +4711,9 @@ packages:
   '@types/body-parser@1.19.6':
     resolution: {integrity: sha512-HLFeCYgz89uk22N5Qg3dvGvsv46B8GLvKKo1zKG4NybA8U2DiEO3w9lqGg29t/tfLRJpJ6iQxnVw4OnB7MoM9g==}
 
+  '@types/bun@1.4.1':
+    resolution: {integrity: sha512-0AVGiTXGajf1rgKom3N+c5L7CBxuoyyv1i44M0nX4UDK0G/fnRAMiri93nHuVPIb429KKtAgj7HatVmmOjeQLA==}
+
   '@types/chai@5.2.3':
     resolution: {integrity: sha512-Mw558oeA9fFbv65/y4mHtXDs9bPnFMZAL/jxdPFUpOHHIXX91mcgEHbS5Lahr+pwZFR8A7GQleRWeI6cGFC2UA==}
 
@@ -5439,6 +5448,9 @@ packages:
     resolution: {integrity: sha512-lHblz4ahamxpTmnsk+MNTRWsjYKv965MwOrSJyeD588rR3Jcu7swE+0wN5F+PbL5cjgu/9ObkhfzEPuofEMwLA==}
     engines: {node: '>=10.0.0'}
 
+  bun-types@1.4.1:
+    resolution: {integrity: sha512-loKuVrAFZKfEv+JvWkHRS9GW5IqLuLRjVXN9p+vZvBN86O5hf/pBZQ5hSoyipsrMmWObZBDvWnlmKvjKTM0PdA==}
+
   bundle-name@4.1.0:
     resolution: {integrity: sha512-tjwM5exMg6BGRI+kNmTntNsvdZS1X8BFYS6tnJ2hdH0kVxM6/eVZ2xy+FqStSWvYmtfFMDLIxurorHwDKfDz5Q==}
     engines: {node: '>=18'}
@@ -6009,6 +6021,20 @@ packages:
   electron-to-chromium@1.5.409:
     resolution: {integrity: sha512-ChI4N44d0B4A6C8prnNjMOaGgE59fUyEVYcRYm2XEXIjMbbvF5i9UL1cblDbpGqiU0uS8FE8UcKxqZqTXdmzbQ==}
 
+  elysia@1.4.30:
+    resolution: {integrity: sha512-S2qqV0CbM4faB1hQQ5IYoeYnAUinjHlzRduxaBc4OoNqh0GjOc8k6tt3hv5ozWcG6Svr6hugw6JL4zNke4jwfA==}
+    peerDependencies:
+      '@sinclair/typebox': '>= 0.34.0 < 1'
+      '@types/bun': '>= 1.2.0'
+      file-type: '>= 20.0.0'
+      openapi-types: '>= 12.0.0'
+      typescript: '>= 5.0.0'
+    peerDependenciesMeta:
+      '@types/bun':
+        optional: true
+      typescript:
+        optional: true
+
   embedded-postgres@18.1.0-beta.16:
     resolution: {integrity: sha512-TDp7Ld0h84x5fzIIZFyreYWqZrxUNjuXB6OxqJCmV6PodB2vzQ+1hlL6n4uK1de7bIAxYt5OkDykwcuIONQdQg==}
     engines: {node: '>=16'}
@@ -6122,6 +6148,14 @@ packages:
     resolution: {integrity: sha512-CRT1WTyuQoD771GW56XEZFQ/ZoSfWid1alKGDYMmkt2yl8UXrVR4pspqWNEcqKvVIzg6PAltWjxcSSPrboA4iA==}
     engines: {node: '>=18.0.0'}
 
+  exact-mirror@0.2.7:
+    resolution: {integrity: sha512-+MeEmDcLA4o/vjK2zujgk+1VTxPR4hdp23qLqkWfStbECtAq9gmsvQa3LW6z/0GXZyHJobrCnmy1cdeE7BjsYg==}
+    peerDependencies:
+      '@sinclair/typebox': ^0.34.15
+    peerDependenciesMeta:
+      '@sinclair/typebox':
+        optional: true
+
   execa@5.1.1:
     resolution: {integrity: sha512-8uSpZZocAZRBAPIEINJj3Lo9HyGitllczc27Eh5YYojjMFMn8yHMDMaUHE2Jqfq05D/wucwI4JGURyXt1vchyg==}
     engines: {node: '>=10'}
@@ -6145,6 +6179,9 @@ packages:
 
   fast-copy@4.0.2:
     resolution: {integrity: sha512-ybA6PDXIXOXivLJK/z9e+Otk7ve13I4ckBvGO5I2RRmBU1gMHLVDJYEuJYhGwez7YNlYji2M2DvVU+a9mSFDlw==}
+
+  fast-decode-uri-component@1.0.1:
+    resolution: {integrity: sha512-WKgKWg5eUxvRZGwW8FvfbaH7AXSh2cL+3j5fMGzUMCxWBJ3dV3a7Wz8y2f/uQ0e3B6WmodD3oS54jTQ9HVTIIg==}
 
   fast-deep-equal@3.1.3:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
@@ -6861,6 +6898,9 @@ packages:
     resolution: {integrity: sha512-aisnrDP4GNe06UcKFnV5bfMNPBUw4jsLGaWwWfnH3v02GnBuXX2MCVn5RbrWo0j3pczUilYblq7fQ7Nw2t5XKw==}
     engines: {node: '>= 0.8'}
 
+  memoirist@0.4.0:
+    resolution: {integrity: sha512-zxTgA0mSYELa66DimuNQDvyLq36AwDlTuVRbnQtB+VuTcKWm5Qc4z3WkSpgsFWHNhexqkIooqpv4hdcqrX5Nmg==}
+
   merge-descriptors@2.0.0:
     resolution: {integrity: sha512-Snk314V5ayFLhp3fkUREub6WtjBfPdCPY1Ln8/8munuLuiYhsABgBVWsozAG+MWMbVEvcdcpbi9R7ww22l9Q3g==}
     engines: {node: '>=18'}
@@ -7140,69 +7180,69 @@ packages:
     resolution: {integrity: sha512-NzwMUB6C1D0+Kd+9iMS/H4k+Ck3cTX6Ckyfr/gAGlmvSE1LUQZnEZvWBi4PYmMwH/S5SMeTXnE+9uAz8uF+pWw==}
     engines: {node: '>=20'}
 
-  opencode-ai@1.18.17:
-    resolution: {integrity: sha512-Pc2D3Y6iQ3BAjcKw9E+9J7VTWNazIwFknFfrolufMCrJ0FLxOIZfndoHmJrx4x1oqpK2CPAqK9D2V6nsp6Oebw==}
+  opencode-ai@1.18.27:
+    resolution: {integrity: sha512-5xrG2gQEwV2sLus30SZX9GyLbPX3z57BCxddedDM0wx1bgnwlHVLOS/FD2uve7fEZlmkr7KYFbvs65ySz1rwzA==}
     cpu: [arm64, x64]
     os: [darwin, linux, win32]
     hasBin: true
 
-  opencode-darwin-arm64@1.18.17:
-    resolution: {integrity: sha512-v04XxT6uevS+/vvr/wgeMA7bhbUBz9YAeWdprEV5T1VmOjczFL45soQYB/8bfzbj8KFXliAaf0jFHU5Plm6VgQ==}
+  opencode-darwin-arm64@1.18.27:
+    resolution: {integrity: sha512-Vkxv2Q0Ne5fKpB/6kyv3fgVuS4PObVlWWYpyC+O39iaSQSFmYoKn2CmXRid0RVXIku6z4GSgv2TpINJXlGGMNA==}
     cpu: [arm64]
     os: [darwin]
 
-  opencode-darwin-x64-baseline@1.18.17:
-    resolution: {integrity: sha512-Lb4arv6O49qXuPaGfmiD1mX3YUjA4Ap/VGoBNGwE/GHuGe0g9nXM2MyIpge5042UgWwR3I8WhfHouS4KlNNwVQ==}
+  opencode-darwin-x64-baseline@1.18.27:
+    resolution: {integrity: sha512-ZJCx6aq4sjsG+4gTgZ2NrZemfKlngIePb+IvfJRRv6J838HxOi6JjIbv/vIY1dN70AUaK8wj68zVrDjPXDBNVQ==}
     cpu: [x64]
     os: [darwin]
 
-  opencode-darwin-x64@1.18.17:
-    resolution: {integrity: sha512-87uufgMSQn9UJsYG5XB4PYumCBNSINjJtm26hCW8OBhi2/tpqbPYpMgW41mKyEgR4/HDvugPZFq3tHyfeRmPzQ==}
+  opencode-darwin-x64@1.18.27:
+    resolution: {integrity: sha512-ypweBfeKS8E+fEG3F1SKrctxK2ecmwOwdGaPTbyVXj6hnI3FUvVscfMHS1xDLts/qGbhNQ0yCcfgs6iEgd/zKw==}
     cpu: [x64]
     os: [darwin]
 
-  opencode-linux-arm64-musl@1.18.17:
-    resolution: {integrity: sha512-WMXUlzwmtOEnmlFYnq5D2OMpkboHgMxc7obl/6NX8y5N84FI6f0EaSZE9VZnvVKKFGi7QAqr9uFVfLzuwdqE4w==}
+  opencode-linux-arm64-musl@1.18.27:
+    resolution: {integrity: sha512-Il0Ft+TJrB7UdrzHe+DlY70Y+FLIORobg4uFFHQy8vRrG370WTpQtoml6eksxzwrTNtUozIOaLuK1FNvoI2zPg==}
     cpu: [arm64]
     os: [linux]
 
-  opencode-linux-arm64@1.18.17:
-    resolution: {integrity: sha512-Qhj+dTwYHbRz9BkdoguFSvG/pTVxt7QA7zDf2mt6Vo3iQXUjl5PpFGacjqZNAZcRuXIct3uu8mwiJ/2AZi4D7w==}
+  opencode-linux-arm64@1.18.27:
+    resolution: {integrity: sha512-6PPJ+m5kuzA7uUS+Kem6+h2Nn0Dl2siz7B36h/9Y21ga3WNN6a0klo2Obu+Vbq63i8Th2XRFflvsi/r5u76PcA==}
     cpu: [arm64]
     os: [linux]
 
-  opencode-linux-x64-baseline-musl@1.18.17:
-    resolution: {integrity: sha512-cCWpQgBmadYCnCFIYhX6+yWONWi7oBRXeZz1VlwBy230aAv+OsYo0W9IJI3TsG4t9Q0/fBznPl00sfFfvU1B8g==}
+  opencode-linux-x64-baseline-musl@1.18.27:
+    resolution: {integrity: sha512-ov+sRE0qMr+Y0QO6YUZw8IlvsasMw3CpxgT0eH4YyPJdG11XkZ58kxiQLA38Y/2mrwTwBFfMNJsYHl2cuXGsmA==}
     cpu: [x64]
     os: [linux]
 
-  opencode-linux-x64-baseline@1.18.17:
-    resolution: {integrity: sha512-CY6fePJTZY8ycjFn7gkwgind6jePaWevtTQ+1RJq81lOsKj7WuA/NTBtg3lTSoJbRuHzK5AAq7bgeGRVUUQ+pg==}
+  opencode-linux-x64-baseline@1.18.27:
+    resolution: {integrity: sha512-XM3OUFc9X3x7CFb2pgbfgFCKvzT3bj+KugBB7IQMff/kNE3R2msq6HzZQnPnGe6Gm5nl6hgIOT8pSi7Oyn0pGw==}
     cpu: [x64]
     os: [linux]
 
-  opencode-linux-x64-musl@1.18.17:
-    resolution: {integrity: sha512-Qp+DkKcJr+kAvHQENs5h1GZ7ylfnykMDCacxF7GQkdi/nEE2vr/olMB9bWFU4jt5Y1+T6J4ZkeowetSXKKcALA==}
+  opencode-linux-x64-musl@1.18.27:
+    resolution: {integrity: sha512-SHxcbT7I/44pCKKDbdFnE2L7Viip34qZGZcBEJApS9aHcOayQTYcpL/9Oz5fti843VR1CN6WXPW3+a+NIemotQ==}
     cpu: [x64]
     os: [linux]
 
-  opencode-linux-x64@1.18.17:
-    resolution: {integrity: sha512-HkZ9tAWdWGerHetlC0cgW6qmpXNM5J2IAXGufZeLL2Ls05UpNJBO1Xvv9s3HQAXSRI1RPoK9eJrbKLhNGCCyiw==}
+  opencode-linux-x64@1.18.27:
+    resolution: {integrity: sha512-hxoPQCv6z/iYh3f8ZlAhJQ0RgzfJZQNOM1ZLRkx7juiZBmtLQLgFtDRiFNhqOKlKgDWsg131fOEEWwsT778aWA==}
     cpu: [x64]
     os: [linux]
 
-  opencode-windows-arm64@1.18.17:
-    resolution: {integrity: sha512-Xz3xZOXNioAR+pltZ9n+1EfsfZPYxVxv8OcTSPeaMGuzPMbvXAg2d+g7qHMAg0GUFW/HCB4x8h2NWm3lDWsI4w==}
+  opencode-windows-arm64@1.18.27:
+    resolution: {integrity: sha512-MSvvd9/qergkSQEVM8k2ipxbaRjZcw4MlQcnFiwQbg41BdRgE9iwZOBk2EVFql6jyidzXBcxiQvsCvOz8ksy9Q==}
     cpu: [arm64]
     os: [win32]
 
-  opencode-windows-x64-baseline@1.18.17:
-    resolution: {integrity: sha512-1odjwEnRQ+W12b7G/tBvbyyj3UDo2zdg4sul2aIHlMmKbHk4M0WEBDBQ+Q9S83N2oxRvIpmGKqOomVCy1aoHkA==}
+  opencode-windows-x64-baseline@1.18.27:
+    resolution: {integrity: sha512-jsnQOYRNekibOFaDcxpf8GCbsQm9eTdqmt4HAQskwttgoSFTVs/RBRntz61yXg3ki/2xWDLezJg+hr/QpPFnUA==}
     cpu: [x64]
     os: [win32]
 
-  opencode-windows-x64@1.18.17:
-    resolution: {integrity: sha512-LzS37g33tw46RVdwHy2f9FHeS7ljfg5fxjnhYeZygibF3kZAwk1XgvmNhifj+RkEV91WuBzhDIS+uG5OuUsC3w==}
+  opencode-windows-x64@1.18.27:
+    resolution: {integrity: sha512-lbjyfjb2B0bTI56lw4bI8Aik2VBEmdLokW6xPit5Y89ZJw4o0gvbHabDylnbM06eBHarz/flvR8VE1PfAoxpqg==}
     cpu: [x64]
     os: [win32]
 
@@ -8906,12 +8946,12 @@ snapshots:
     optionalDependencies:
       '@opentelemetry/api': 1.9.1
 
-  '@better-auth/drizzle-adapter@1.7.2(@better-auth/core@1.7.2(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(@opentelemetry/api@1.9.1)(better-call@1.4.0(zod@4.4.3))(jose@6.2.10)(kysely@0.29.5)(nanostores@1.5.3))(@better-auth/utils@0.4.2)(drizzle-orm@0.45.2(@opentelemetry/api@1.9.1)(kysely@0.29.5)(pg@8.18.0)(postgres@3.4.9))':
+  '@better-auth/drizzle-adapter@1.7.2(@better-auth/core@1.7.2(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(@opentelemetry/api@1.9.1)(better-call@1.4.0(zod@4.4.3))(jose@6.2.10)(kysely@0.29.5)(nanostores@1.5.3))(@better-auth/utils@0.4.2)(drizzle-orm@0.45.2(@opentelemetry/api@1.9.1)(bun-types@1.4.1)(kysely@0.29.5)(pg@8.18.0)(postgres@3.4.9))':
     dependencies:
       '@better-auth/core': 1.7.2(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(@opentelemetry/api@1.9.1)(better-call@1.4.0(zod@4.4.3))(jose@6.2.10)(kysely@0.29.5)(nanostores@1.5.3)
       '@better-auth/utils': 0.4.2
     optionalDependencies:
-      drizzle-orm: 0.45.2(@opentelemetry/api@1.9.1)(kysely@0.29.5)(pg@8.18.0)(postgres@3.4.9)
+      drizzle-orm: 0.45.2(@opentelemetry/api@1.9.1)(bun-types@1.4.1)(kysely@0.29.5)(pg@8.18.0)(postgres@3.4.9)
 
   '@better-auth/kysely-adapter@1.7.2(@better-auth/core@1.7.2(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(@opentelemetry/api@1.9.1)(better-call@1.4.0(zod@4.4.3))(jose@6.2.10)(kysely@0.29.5)(nanostores@1.5.3))(@better-auth/utils@0.4.2)(kysely@0.29.5)':
     dependencies:
@@ -11910,6 +11950,10 @@ snapshots:
       '@types/connect': 3.4.38
       '@types/node': 24.13.3
 
+  '@types/bun@1.4.1':
+    dependencies:
+      bun-types: 1.4.1
+
   '@types/chai@5.2.3':
     dependencies:
       '@types/deep-eql': 4.0.2
@@ -12229,11 +12273,11 @@ snapshots:
     dependencies:
       execa: 5.1.1
 
-  '@vercel/connect@0.6.1(better-auth@1.7.2(@opentelemetry/api@1.9.1)(drizzle-kit@0.31.10)(drizzle-orm@0.45.2(@opentelemetry/api@1.9.1)(kysely@0.29.5)(pg@8.18.0)(postgres@3.4.9))(pg@8.18.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(vitest@4.1.11(@opentelemetry/api@1.9.1)(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.7.0)(jsdom@30.0.1(@noble/hashes@2.4.0))(tsx@4.23.12)))':
+  '@vercel/connect@0.6.1(better-auth@1.7.2(@opentelemetry/api@1.9.1)(drizzle-kit@0.31.10)(drizzle-orm@0.45.2(@opentelemetry/api@1.9.1)(bun-types@1.4.1)(kysely@0.29.5)(pg@8.18.0)(postgres@3.4.9))(pg@8.18.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(vitest@4.1.11(@opentelemetry/api@1.9.1)(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.7.0)(jsdom@30.0.1(@noble/hashes@2.4.0))(tsx@4.23.12)))':
     dependencies:
       '@vercel/oidc': 3.8.2
     optionalDependencies:
-      better-auth: 1.7.2(@opentelemetry/api@1.9.1)(drizzle-kit@0.31.10)(drizzle-orm@0.45.2(@opentelemetry/api@1.9.1)(kysely@0.29.5)(pg@8.18.0)(postgres@3.4.9))(pg@8.18.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(vitest@4.1.11(@opentelemetry/api@1.9.1)(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.7.0)(jsdom@30.0.1(@noble/hashes@2.4.0))(tsx@4.23.12))
+      better-auth: 1.7.2(@opentelemetry/api@1.9.1)(drizzle-kit@0.31.10)(drizzle-orm@0.45.2(@opentelemetry/api@1.9.1)(bun-types@1.4.1)(kysely@0.29.5)(pg@8.18.0)(postgres@3.4.9))(pg@8.18.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(vitest@4.1.11(@opentelemetry/api@1.9.1)(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.7.0)(jsdom@30.0.1(@noble/hashes@2.4.0))(tsx@4.23.12))
 
   '@vercel/oidc@3.8.2':
     dependencies:
@@ -12481,10 +12525,10 @@ snapshots:
     dependencies:
       tweetnacl: 0.14.5
 
-  better-auth@1.7.2(@opentelemetry/api@1.9.1)(drizzle-kit@0.31.10)(drizzle-orm@0.45.2(@opentelemetry/api@1.9.1)(kysely@0.29.5)(pg@8.18.0)(postgres@3.4.9))(pg@8.18.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(vitest@4.1.11(@opentelemetry/api@1.9.1)(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.7.0)(jsdom@30.0.1(@noble/hashes@2.4.0))(tsx@4.23.12)):
+  better-auth@1.7.2(@opentelemetry/api@1.9.1)(drizzle-kit@0.31.10)(drizzle-orm@0.45.2(@opentelemetry/api@1.9.1)(bun-types@1.4.1)(kysely@0.29.5)(pg@8.18.0)(postgres@3.4.9))(pg@8.18.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(vitest@4.1.11(@opentelemetry/api@1.9.1)(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.7.0)(jsdom@30.0.1(@noble/hashes@2.4.0))(tsx@4.23.12)):
     dependencies:
       '@better-auth/core': 1.7.2(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(@opentelemetry/api@1.9.1)(better-call@1.4.0(zod@4.4.3))(jose@6.2.10)(kysely@0.29.5)(nanostores@1.5.3)
-      '@better-auth/drizzle-adapter': 1.7.2(@better-auth/core@1.7.2(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(@opentelemetry/api@1.9.1)(better-call@1.4.0(zod@4.4.3))(jose@6.2.10)(kysely@0.29.5)(nanostores@1.5.3))(@better-auth/utils@0.4.2)(drizzle-orm@0.45.2(@opentelemetry/api@1.9.1)(kysely@0.29.5)(pg@8.18.0)(postgres@3.4.9))
+      '@better-auth/drizzle-adapter': 1.7.2(@better-auth/core@1.7.2(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(@opentelemetry/api@1.9.1)(better-call@1.4.0(zod@4.4.3))(jose@6.2.10)(kysely@0.29.5)(nanostores@1.5.3))(@better-auth/utils@0.4.2)(drizzle-orm@0.45.2(@opentelemetry/api@1.9.1)(bun-types@1.4.1)(kysely@0.29.5)(pg@8.18.0)(postgres@3.4.9))
       '@better-auth/kysely-adapter': 1.7.2(@better-auth/core@1.7.2(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(@opentelemetry/api@1.9.1)(better-call@1.4.0(zod@4.4.3))(jose@6.2.10)(kysely@0.29.5)(nanostores@1.5.3))(@better-auth/utils@0.4.2)(kysely@0.29.5)
       '@better-auth/memory-adapter': 1.7.2(@better-auth/core@1.7.2(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(@opentelemetry/api@1.9.1)(better-call@1.4.0(zod@4.4.3))(jose@6.2.10)(kysely@0.29.5)(nanostores@1.5.3))(@better-auth/utils@0.4.2)
       '@better-auth/mongo-adapter': 1.7.2(@better-auth/core@1.7.2(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(@opentelemetry/api@1.9.1)(better-call@1.4.0(zod@4.4.3))(jose@6.2.10)(kysely@0.29.5)(nanostores@1.5.3))(@better-auth/utils@0.4.2)
@@ -12502,7 +12546,7 @@ snapshots:
       zod: 4.4.3
     optionalDependencies:
       drizzle-kit: 0.31.10
-      drizzle-orm: 0.45.2(@opentelemetry/api@1.9.1)(kysely@0.29.5)(pg@8.18.0)(postgres@3.4.9)
+      drizzle-orm: 0.45.2(@opentelemetry/api@1.9.1)(bun-types@1.4.1)(kysely@0.29.5)(pg@8.18.0)(postgres@3.4.9)
       pg: 8.18.0
       react: 19.2.8
       react-dom: 19.2.8(react@19.2.8)
@@ -12564,6 +12608,10 @@ snapshots:
 
   buildcheck@0.0.7:
     optional: true
+
+  bun-types@1.4.1:
+    dependencies:
+      '@types/node': 24.13.3
 
   bundle-name@4.1.0:
     dependencies:
@@ -13021,9 +13069,10 @@ snapshots:
       esbuild: 0.25.12
       tsx: 4.23.12
 
-  drizzle-orm@0.45.2(@opentelemetry/api@1.9.1)(kysely@0.29.5)(pg@8.18.0)(postgres@3.4.9):
+  drizzle-orm@0.45.2(@opentelemetry/api@1.9.1)(bun-types@1.4.1)(kysely@0.29.5)(pg@8.18.0)(postgres@3.4.9):
     optionalDependencies:
       '@opentelemetry/api': 1.9.1
+      bun-types: 1.4.1
       kysely: 0.29.5
       pg: 8.18.0
       postgres: 3.4.9
@@ -13043,6 +13092,16 @@ snapshots:
   ee-first@1.1.1: {}
 
   electron-to-chromium@1.5.409: {}
+
+  elysia@1.4.30(@types/bun@1.4.1)(typescript@7.0.2):
+    dependencies:
+      cookie: 1.1.1
+      exact-mirror: 0.2.7
+      fast-decode-uri-component: 1.0.1
+      memoirist: 0.4.0
+    optionalDependencies:
+      '@types/bun': 1.4.1
+      typescript: 7.0.2
 
   embedded-postgres@18.1.0-beta.16(patch_hash=55uhvnotpqyiy37rn3pqpukhei):
     dependencies:
@@ -13218,6 +13277,8 @@ snapshots:
     dependencies:
       eventsource-parser: 3.1.1
 
+  exact-mirror@0.2.7: {}
+
   execa@5.1.1:
     dependencies:
       cross-spawn: 7.0.6
@@ -13276,6 +13337,8 @@ snapshots:
   extend@3.0.2: {}
 
   fast-copy@4.0.2: {}
+
+  fast-decode-uri-component@1.0.1: {}
 
   fast-deep-equal@3.1.3: {}
 
@@ -14094,6 +14157,8 @@ snapshots:
 
   media-typer@1.1.0: {}
 
+  memoirist@0.4.0: {}
+
   merge-descriptors@2.0.0: {}
 
   merge-stream@2.0.0: {}
@@ -14539,55 +14604,55 @@ snapshots:
       powershell-utils: 0.2.0
       wsl-utils: 1.0.0
 
-  opencode-ai@1.18.17:
+  opencode-ai@1.18.27:
     optionalDependencies:
-      opencode-darwin-arm64: 1.18.17
-      opencode-darwin-x64: 1.18.17
-      opencode-darwin-x64-baseline: 1.18.17
-      opencode-linux-arm64: 1.18.17
-      opencode-linux-arm64-musl: 1.18.17
-      opencode-linux-x64: 1.18.17
-      opencode-linux-x64-baseline: 1.18.17
-      opencode-linux-x64-baseline-musl: 1.18.17
-      opencode-linux-x64-musl: 1.18.17
-      opencode-windows-arm64: 1.18.17
-      opencode-windows-x64: 1.18.17
-      opencode-windows-x64-baseline: 1.18.17
+      opencode-darwin-arm64: 1.18.27
+      opencode-darwin-x64: 1.18.27
+      opencode-darwin-x64-baseline: 1.18.27
+      opencode-linux-arm64: 1.18.27
+      opencode-linux-arm64-musl: 1.18.27
+      opencode-linux-x64: 1.18.27
+      opencode-linux-x64-baseline: 1.18.27
+      opencode-linux-x64-baseline-musl: 1.18.27
+      opencode-linux-x64-musl: 1.18.27
+      opencode-windows-arm64: 1.18.27
+      opencode-windows-x64: 1.18.27
+      opencode-windows-x64-baseline: 1.18.27
 
-  opencode-darwin-arm64@1.18.17:
+  opencode-darwin-arm64@1.18.27:
     optional: true
 
-  opencode-darwin-x64-baseline@1.18.17:
+  opencode-darwin-x64-baseline@1.18.27:
     optional: true
 
-  opencode-darwin-x64@1.18.17:
+  opencode-darwin-x64@1.18.27:
     optional: true
 
-  opencode-linux-arm64-musl@1.18.17:
+  opencode-linux-arm64-musl@1.18.27:
     optional: true
 
-  opencode-linux-arm64@1.18.17:
+  opencode-linux-arm64@1.18.27:
     optional: true
 
-  opencode-linux-x64-baseline-musl@1.18.17:
+  opencode-linux-x64-baseline-musl@1.18.27:
     optional: true
 
-  opencode-linux-x64-baseline@1.18.17:
+  opencode-linux-x64-baseline@1.18.27:
     optional: true
 
-  opencode-linux-x64-musl@1.18.17:
+  opencode-linux-x64-musl@1.18.27:
     optional: true
 
-  opencode-linux-x64@1.18.17:
+  opencode-linux-x64@1.18.27:
     optional: true
 
-  opencode-windows-arm64@1.18.17:
+  opencode-windows-arm64@1.18.27:
     optional: true
 
-  opencode-windows-x64-baseline@1.18.17:
+  opencode-windows-x64-baseline@1.18.27:
     optional: true
 
-  opencode-windows-x64@1.18.17:
+  opencode-windows-x64@1.18.27:
     optional: true
 
   os-paths@4.4.0: {}
