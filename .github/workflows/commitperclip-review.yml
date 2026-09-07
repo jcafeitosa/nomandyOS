@@ -20,7 +20,7 @@ jobs:
       - name: Checkout base branch (never PR code)
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
-          ref: master
+          ref: ${{ github.event.pull_request.base.ref }}
 
       - name: Dependency Review
         uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0
@@ -33,8 +33,21 @@ jobs:
         with:
           node-version: '24'
 
+      - name: Skip when COMMITPERCLIP_KEY is unset
+        id: gate
+        run: |
+          if [ -z "${COMMITPERCLIP_KEY}" ]; then
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "COMMITPERCLIP_KEY unset — soft-skip commitperclip review."
+          else
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          fi
+        env:
+          COMMITPERCLIP_KEY: ${{ secrets.COMMITPERCLIP_KEY }}
+
       - name: Generate commitperclip token
         id: token
+        if: steps.gate.outputs.present == 'true'
         run: |
           TOKEN=$(node .github/scripts/get-bot-token.mjs)
           echo "::add-mask::$TOKEN"
@@ -44,7 +57,9 @@ jobs:
 
       - name: Run quality gates
         id: quality
-        if: github.event.pull_request.user.login != 'dependabot[bot]'
+        if: >-
+          steps.gate.outputs.present == 'true' &&
+          github.event.pull_request.user.login != 'dependabot[bot]'
         run: node .github/scripts/run-quality-gates.mjs
         continue-on-error: true
         env:
@@ -56,6 +71,7 @@ jobs:
 
       - name: Fail if quality gates failed
         if: >-
+          steps.gate.outputs.present == 'true' &&
           github.event.pull_request.user.login != 'dependabot[bot]' &&
           steps.quality.outcome == 'failure'
         run: |
