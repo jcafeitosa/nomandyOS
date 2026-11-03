@@ -88,7 +88,7 @@
     "sharp": "^0.35.4",
     "ssh2": "^1.17.0",
     "ws": "^8.21.3",
-    "zod": "^4.4.3"
+    "zod": "^4.6.6"
   },
   "bundleDependencies": [
     "acpx"
